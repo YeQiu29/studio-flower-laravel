@@ -159,10 +159,6 @@
                                     </a>
                                 </form>
                             </li>
-                            @else
-                            <li class="nav-item">
-                                <a class="nav-link me-4" href="{{ route('login') }}">Login</a>
-                            </li>
                             @endauth
                             <li class="nav-item">
                                 <div class="user-items ps-5">

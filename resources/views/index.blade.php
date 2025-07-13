@@ -153,6 +153,10 @@
       </div>
     </section>
 
+    </div>
+      </div>
+    </section>
+
     <!-- Special Graduation -->
     <section id="smart-watches" class="product-store padding-large position-relative">
       <div class="container">
@@ -163,7 +167,7 @@
               <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
             </div>
           </div>
-          <div class="swiper product-watch-swiper">
+          <div class="swiper graduation-swiper">
             <div class="swiper-wrapper">
               @foreach($specialGraduation as $product)
               <div class="swiper-slide">
@@ -174,11 +178,11 @@
                   <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
                       <a href="https://wa.me/6289509808564?text={{ urlencode('Halo, saya ingin memesan produk: ' . $product->name . '. Apakah masih tersedia?') }}" class="btn btn-medium btn-success wa-order-btn" type="button" target="_blank">
-                        Order By WA
-                        <svg class="whatsapp-icon" width="20" height="20">
-                          <use xlink:href="#whatsapp"></use>
-                        </svg>
-                      </a>
+                          Order By WA
+                          <svg class="whatsapp-icon" width="20" height="20">
+                            <use xlink:href="#whatsapp"></use>
+                          </svg>
+                        </a>
                     </div>
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
@@ -192,13 +196,10 @@
               @endforeach
             </div>
           </div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-pagination swiper-pagination-graduation"></div>
         </div>
       </div>
     </section>
-
-
-    <!-- Special Weddings -->
     <section id="wisuda-moment" class="product-store padding-large position-relative">
       <div class="container">
         <div class="row">
@@ -208,7 +209,7 @@
               <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
             </div>
           </div>
-          <div class="swiper product-watch-swiper">
+          <div class="swiper weddings-swiper">
             <div class="swiper-wrapper">
               @foreach($specialWeddings as $product)
               <div class="swiper-slide">
@@ -237,13 +238,10 @@
               @endforeach
             </div>
           </div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-pagination swiper-pagination-weddings"></div>
         </div>
       </div>
     </section>
-      
-      
-      <!-- Special Cake -->
     <section id="special-cake" class="product-store padding-large position-relative">
       <div class="container">
         <div class="row">
@@ -253,7 +251,7 @@
               <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
             </div>
           </div>
-          <div class="swiper product-watch-swiper">
+          <div class="swiper cake-swiper">
             <div class="swiper-wrapper">
               @foreach($specialCake as $product)
               <div class="swiper-slide">
@@ -282,23 +280,7 @@
               @endforeach
             </div>
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-    </section>
-
-
-    <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url('{{ asset('images/single-image1.png') }}');background-position: right; background-repeat: no-repeat;">
-      <div class="row d-flex flex-wrap align-items-center">
-        <div class="col-md-6 col-sm-12">
-          <div class="text-content offset-4 padding-medium">
-            <h3>10% off</h3>
-            <h2 class="display-2 pb-5 text-uppercase text-dark">New year sale</h2>
-            <a href="{{ url('/shop') }}" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Sale</a>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          
+          <div class="swiper-pagination swiper-pagination-cake"></div>
         </div>
       </div>
     </section>

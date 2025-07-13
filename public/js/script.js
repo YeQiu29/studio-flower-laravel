@@ -70,45 +70,75 @@
         },
       });         
 
-      var swiper = new Swiper(".product-swiper", {
+      // Special Product (kiri ke kanan)
+      var swiperProduct = new Swiper(".product-swiper", {
         slidesPerView: 4,
         spaceBetween: 10,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+          reverseDirection: false,
+          speed: 1000, // Added for slow scroll animation
+        },
         pagination: {
           el: "#mobile-products .swiper-pagination",
           clickable: true,
         },
-        breakpoints: {
-          0: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          980: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          }
-        },
       });      
 
-      var swiper = new Swiper(".product-watch-swiper", {
+      // Special Graduation (kanan ke kiri)
+      var swiperGraduation = new Swiper(".graduation-swiper", {
         slidesPerView: 4,
         spaceBetween: 10,
-        pagination: {
-          el: "#smart-watches .swiper-pagination",
-          clickable: true,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+          reverseDirection: true, // Kanan ke kiri
+          speed: 1000, // Added for slow scroll animation
         },
-        breakpoints: {
-          0: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          980: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          }
+        pagination: {
+          el: "#smart-watches .swiper-pagination-graduation",
+          clickable: true,
         },
       }); 
 
-      var swiper = new Swiper(".testimonial-swiper", {
+      // Special Weddings (kiri ke kanan)
+      var swiperWeddings = new Swiper(".weddings-swiper", {
+        slidesPerView: 4,
+        spaceBetween: 10,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+          reverseDirection: false, // Kiri ke kanan
+          speed: 1000, // Added for slow scroll animation
+        },
+        pagination: {
+          el: "#wisuda-moment .swiper-pagination-weddings",
+          clickable: true,
+        },
+      });
+
+      // Special Cake (kanan ke kiri)
+      var swiperCake = new Swiper(".cake-swiper", {
+        slidesPerView: 4,
+        spaceBetween: 10,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+          reverseDirection: true, // Kanan ke kiri
+          speed: 1000, // Added for slow scroll animation
+        },
+        pagination: {
+          el: "#special-cake .swiper-pagination-cake",
+          clickable: true,
+        },
+      });
+
+      var swiperTestimonial = new Swiper(".testimonial-swiper", {
         loop: true,
         navigation: {
           nextEl: ".swiper-arrow-prev",
