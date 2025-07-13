@@ -82,17 +82,17 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.products.index') ? 'active' : '' }}" href="{{ route('admin.products.index') }}">
-                                Manage Products
+                                <ion-icon name="cube" class="me-2"></ion-icon> Manage Products
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.posts.index') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">
-                                Manage Posts
+                                <ion-icon name="document" class="me-2"></ion-icon> Manage Posts
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}" target="_blank">
-                                View Website
+                                <ion-icon name="globe" class="me-2"></ion-icon> View Website
                             </a>
                         </li>
                     </ul>
@@ -104,12 +104,20 @@
                     <button class="btn btn-dark d-none d-md-inline-block" id="sidebarToggle">Toggle Menu</button>
                 </div>
                 @yield('content')
+
+                <footer class="footer mt-auto py-3 bg-light">
+                    <div class="container-fluid text-center">
+                        <span class="text-muted">Copyright © 2025 Studio Flower. All rights reserved ~ Website untuk Alisa</span>
+                    </div>
+                </footer>
             </main>
         </div>
     </div>
 
     <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const sidebarToggle = document.getElementById('sidebarToggle');

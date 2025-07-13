@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    <a href="{{ route('admin.posts.create') }}" class="btn btn-primary mb-3">Add New Post</a>
+    <a href="{{ route('admin.posts.create') }}" class="btn btn-success mb-3"><ion-icon name="add-circle" class="me-1"></ion-icon> New Post</a>
     <table class="table table-striped table-hover">
         <thead>
             <tr>

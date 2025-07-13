@@ -21,9 +21,8 @@ Route::get('/about', function () {
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/contact', [App\Http\Controllers\ContactController::class, 'showContactForm'])->name('contact');
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'sendEmail'])->name('contact.send');
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminProductController::class, 'index'])->name('admin.index');

@@ -19,10 +19,14 @@
     @endif
 
     <div class="d-flex justify-content-between mb-3">
-        <a href="{{ route('admin.products.create') }}" class="btn btn-primary">Add New Product</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-success d-flex align-items-center">
+            <ion-icon name="add-circle" class="me-2"></ion-icon> New Product
+        </a>
         <form action="{{ route('admin.products.index') }}" method="GET" class="d-flex">
             <input type="text" name="search" class="form-control me-2" placeholder="Search by product name..." value="{{ request('search') }}">
-            <button type="submit" class="btn btn-secondary">Search</button>
+            <button type="submit" class="btn btn-info d-flex align-items-center">
+                <ion-icon name="search"></ion-icon>
+            </button>
         </form>
     </div>
     <table class="table table-striped table-hover">

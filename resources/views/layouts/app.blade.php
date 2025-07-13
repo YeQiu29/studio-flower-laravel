@@ -140,10 +140,6 @@
                                     <li><a href="{{ url('/about') }}" class="dropdown-item">About</a></li>
                                     <li><a href="{{ url('/blog') }}" class="dropdown-item">Blog</a></li>
                                     <li><a href="{{ url('/shop') }}" class="dropdown-item">Shop</a></li>
-                                    <li><a href="{{ url('/cart') }}" class="dropdown-item">Cart</a></li>
-                                    <li><a href="{{ url('/checkout') }}" class="dropdown-item">Checkout</a></li>
-                                    <li><a href="{{ url('/single-post') }}" class="dropdown-item">Single Post</a></li>
-                                    <li><a href="{{ url('/single-product') }}" class="dropdown-item">Single Product</a></li>
                                     <li><a href="{{ url('/contact') }}" class="dropdown-item">Contact</a></li>
                                 </ul>
                             </li>
