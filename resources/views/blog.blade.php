@@ -3,7 +3,8 @@
 @section('title', 'Our Blog')
 
 @section('content')
-<section class="py-5 pt-header-offset">
+{{-- We add an inline style here to push the content down below the header --}}
+<section class="py-5 pt-header-offset" style="padding-top: 100px !important;">
     <div class="container">
         <h1 class="display-4 text-center mb-4">Our Blog</h1>
         <p class="lead text-center">Stay updated with our latest news, tips, and floral inspirations.</p>

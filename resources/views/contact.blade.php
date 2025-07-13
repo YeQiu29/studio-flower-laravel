@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-<section class="py-5 pt-header-offset">
+<section class="py-5 pt-header-offset" style="padding-top: 100px !important;">
     <div class="container">
         <h1 class="display-4 text-center mb-4">Contact Us</h1>
         <p class="lead text-center">We'd love to hear from you! Please fill out the form below or reach out to us directly.</p>
