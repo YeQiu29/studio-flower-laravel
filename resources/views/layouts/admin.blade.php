@@ -8,78 +8,120 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('style.css') }}">
     <style>
         body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
+            font-size: .875rem;
         }
-        #admin-wrapper {
-            display: flex;
-            flex: 1;
-        }
-        #sidebar {
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
             width: 250px;
-            background-color: #343a40;
-            color: white;
+            transition: all 0.3s ease;
+        }
+        .sidebar.collapsed {
+            margin-left: -250px;
+        }
+        .main-content {
+            margin-left: 250px;
             padding: 20px;
-            flex-shrink: 0;
+            transition: margin-left 0.3s ease;
         }
-        #sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px 0;
+        .main-content.expanded {
+            margin-left: 0;
         }
-        #sidebar a:hover {
-            background-color: #495057;
+        .navbar-brand {
+            display: flex;
+            align-items: center;
         }
-        #admin-content {
-            flex-grow: 1;
-            padding: 20px;
-            background-color: #f8f9fa;
+        .navbar-brand img {
+            height: 30px;
+            margin-right: 10px;
         }
-        .navbar-admin {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            margin-bottom: 20px;
+        .sidebar .nav-link {
+            color: #c7c7c7;
         }
-        .navbar-admin a {
-            color: white;
-            text-decoration: none;
+        .sidebar .nav-link.active, .sidebar .nav-link:hover {
+            color: #fff;
+            font-weight: bold;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
     </style>
 </head>
 <body>
-    <nav class="navbar-admin">
-        <div class="container-fluid">
-            <a href="{{ url('/') }}" class="navbar-brand">Studio Flower Admin</a>
-            <div class="d-flex">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ route('admin.products.index') }}">
+            <img src="{{ asset('images/main-logo.png') }}" alt="Studio Flower Logo">
+            Studio Flower Admin
+        </a>
+        <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="{{ route('logout') }}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Logout
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            </div>
-        </div>
+            </li>
+        </ul>
     </nav>
 
-    <div id="admin-wrapper">
-        <div id="sidebar">
-            <h5>Admin Menu</h5>
-            <ul class="list-unstyled">
-                <li><a href="{{ route('admin.products.index') }}">Manage Products</a></li>
-                <li><a href="{{ route('admin.posts.index') }}">Manage Posts</a></li>
-                <li><a href="{{ url('/') }}">View Website</a></li>
-            </ul>
-        </div>
-        <div id="admin-content">
-            @yield('content')
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+                <div class="position-sticky pt-3">
+                    <h5 class="px-3 text-white">Admin Menu</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.products.index') ? 'active' : '' }}" href="{{ route('admin.products.index') }}">
+                                Manage Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.posts.index') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">
+                                Manage Posts
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/') }}" target="_blank">
+                                View Website
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div class="pt-3 pb-2 mb-3 border-bottom d-flex justify-content-end align-items-center">
+                    <button class="btn btn-dark d-none d-md-inline-block" id="sidebarToggle">Toggle Menu</button>
+                </div>
+                @yield('content')
+            </main>
         </div>
     </div>
 
     <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.getElementById('sidebarMenu');
+            const mainContent = document.querySelector('.main-content');
+
+            sidebarToggle.addEventListener('click', function () {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded');
+            });
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>

@@ -12,9 +12,18 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $query = Product::query();
+
+        // Search functionality
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->input('search') . '%');
+        }
+
+        // Order by latest updated and paginate
+        $products = $query->orderBy('updated_at', 'desc')->paginate(8);
+
         return view('admin.index', compact('products'));
     }
 
