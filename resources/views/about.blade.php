@@ -3,7 +3,8 @@
 @section('title', 'About Us')
 
 @section('content')
-<section class="py-5">
+{{-- Menambahkan style inline untuk memperbaiki tumpang tindih dengan header --}}
+<section class="py-5" style="padding-top: 100px !important;">
     <div class="container">
         <h1 class="display-4 text-center mb-4">About Studio Flower</h1>
         <p class="lead text-center">We are dedicated to providing the most beautiful and fresh flowers for every special moment in your life.</p>
