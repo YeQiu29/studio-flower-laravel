@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="flex justify-center mb-4">
         <a href="/">
-            <img src="{{ asset('images/main-logo.png') }}" alt="Studio Flower Logo" class="floating-logo">
+            <img src="{{ asset('images/mecucu.jpg') }}" alt="Studio Flower Logo" class="floating-logo">
         </a>
     </div>
 

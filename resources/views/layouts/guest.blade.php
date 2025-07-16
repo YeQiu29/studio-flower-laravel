@@ -19,12 +19,6 @@
 
         <!-- Styles -->
         <style>
-            body {
-                background-image: url('{{ asset('images/mecucu.jpg') }}');
-                background-size: cover;
-                background-position: center;
-            }
-
             @keyframes float {
                 0% {
                     transform: translateY(0px);
@@ -39,7 +33,20 @@
 
             .floating-logo {
                 animation: float 3s ease-in-out infinite;
-                max-width: 150px; /* Atur ukuran maksimum logo jika perlu */
+                max-width: 150px;
+            }
+
+            /* Styling for the cursor trail particles */
+            .cursor-trail {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background-color: #ff3f81; /* Match Vanta color */
+                border-radius: 50%;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+                z-index: 9999;
             }
         </style>
     </head>
@@ -49,5 +56,50 @@
                 {{ $slot }}
             </div>
         </div>
+
+        <!-- Vanta.js Background Animation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+        <script>
+        // Vanta.js background (non-interactive)
+        VANTA.NET({
+          el: "body",
+          mouseControls: false, // Disabled mouse interaction for the main net
+          touchControls: false,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0xff3f81,
+          backgroundColor: 0x201528,
+          points: 12.00,
+          maxDistance: 22.00,
+          spacing: 18.00
+        });
+
+        // Cursor trail script
+        document.addEventListener('mousemove', function(e) {
+            let trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            document.body.appendChild(trail);
+
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+
+            // Randomize the fade-out path slightly
+            let randomX = (Math.random() - 0.5) * 50;
+            let randomY = (Math.random() - 0.5) * 50;
+
+            setTimeout(() => {
+                trail.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                trail.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => {
+                document.body.removeChild(trail);
+            }, 600); // Remove from DOM after fade out
+        });
+        </script>
     </body>
 </html>
