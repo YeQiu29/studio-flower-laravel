@@ -116,7 +116,7 @@
           <div class="display-header d-flex justify-content-between pb-3">
             <h2 class="display-7 text-dark text-uppercase">Special Product</h2>
             <div class="btn-right">
-              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">See All My Product </a>
             </div>
           </div>
           <div class="swiper product-swiper">
@@ -153,10 +153,6 @@
       </div>
     </section>
 
-    </div>
-      </div>
-    </section>
-
     <!-- Special Graduation -->
     <section id="smart-watches" class="product-store padding-large position-relative">
       <div class="container">
@@ -164,7 +160,7 @@
           <div class="display-header d-flex justify-content-between pb-3">
             <h2 class="display-7 text-dark text-uppercase">Special Graduation</h2>
             <div class="btn-right">
-              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">See All My Product</a>
             </div>
           </div>
           <div class="swiper graduation-swiper">
@@ -206,7 +202,7 @@
           <div class="display-header d-flex justify-content-between pb-3">
             <h2 class="display-7 text-dark text-uppercase">Special Weddings</h2>
             <div class="btn-right">
-              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">See All My Product</a>
             </div>
           </div>
           <div class="swiper weddings-swiper">
@@ -248,7 +244,7 @@
           <div class="display-header d-flex justify-content-between pb-3">
             <h2 class="display-7 text-dark text-uppercase">Special Cake</h2>
             <div class="btn-right">
-              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">See All My Product</a>
             </div>
           </div>
           <div class="swiper cake-swiper">
@@ -487,12 +483,25 @@
         </div>
       </div>
     </section>
+
+    <section id="map-location" class="padding-large">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="display-header text-uppercase text-dark text-center pb-3">
+                        <h2 class="display-7">Our Location</h2>
+                    </div>
+                    <div id="map" style="height: 400px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
 
 @section('scripts')
 <script>
-    // Script untuk tombol WhatsApp, jika diperlukan di halaman ini.
     document.addEventListener('DOMContentLoaded', function() {
+        // WhatsApp Button Script
         const whatsappNumber = '6289509808564';
         const waButtons = document.querySelectorAll('.wa-order-btn');
         waButtons.forEach(button => {
@@ -504,6 +513,23 @@
                 window.open(whatsappUrl, '_blank');
             });
         });
+
+        // Leaflet Map Script
+        if (document.getElementById('map')) {
+            var map = L.map('map').setView([-7.365748533016786, 112.67537678180541], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            var marker = L.marker([-7.365748533016786, 112.67537678180541]).addTo(map)
+                .bindPopup('<b>Studio Flower</b><br>Our lovely store is here.')
+                .openPopup();
+
+            marker.on('click', function() {
+                window.open('https://www.google.com/maps/search/?api=1&query=-7.365748533016786,112.67537678180541', '_blank');
+            });
+        }
     });
 </script>
 @endsection
