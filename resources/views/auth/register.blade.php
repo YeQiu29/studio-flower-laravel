@@ -1,4 +1,10 @@
 <x-guest-layout>
+    <div class="flex justify-center mb-4">
+        <a href="/">
+            <img src="{{ asset('images/main-logo.png') }}" alt="Studio Flower Logo" class="floating-logo">
+        </a>
+    </div>
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
