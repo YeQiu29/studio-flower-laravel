@@ -109,19 +109,19 @@
         </div>
       </div>
     </section>
-    <!-- Special Product -->
-    <section id="mobile-products" class="product-store position-relative padding-large no-padding-top">
+    @foreach($categories as $category)
+    <section id="{{ Str::slug($category->name) }}" class="product-store position-relative padding-large no-padding-top" data-direction="{{ $loop->odd ? 'ltr' : 'rtl' }}">
       <div class="container">
         <div class="row">
           <div class="display-header d-flex justify-content-between pb-3">
-            <h2 class="display-7 text-dark text-uppercase">Special Product</h2>
+            <h2 class="display-7 text-dark text-uppercase">{{ $category->name }}</h2>
             <div class="btn-right">
               <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">See All My Product </a>
             </div>
           </div>
           <div class="swiper product-swiper">
             <div class="swiper-wrapper">
-              @foreach($specialProducts as $product)
+              @foreach($category->products as $product)
               <div class="swiper-slide">
                 <div class="product-card position-relative">
                   <div class="image-holder">
@@ -148,138 +148,11 @@
               @endforeach
             </div>
           </div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-pagination swiper-pagination-{{ $loop->index }}"></div>
         </div>
       </div>
     </section>
-
-    <!-- Special Graduation -->
-    <section id="smart-watches" class="product-store padding-large position-relative">
-      <div class="container">
-        <div class="row">
-          <div class="display-header d-flex justify-content-between pb-3">
-            <h2 class="display-7 text-dark text-uppercase">Special Graduation</h2>
-            <div class="btn-right">
-              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">See All My Product</a>
-            </div>
-          </div>
-          <div class="swiper graduation-swiper">
-            <div class="swiper-wrapper">
-              @foreach($specialGraduation as $product)
-              <div class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="https://wa.me/6289509808564?text={{ urlencode('Halo, saya ingin memesan produk: ' . $product->name . '. Apakah masih tersedia?') }}" class="btn btn-medium btn-success wa-order-btn" type="button" target="_blank">
-                          Order By WA
-                          <svg class="whatsapp-icon" width="20" height="20">
-                            <use xlink:href="#whatsapp"></use>
-                          </svg>
-                        </a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a>
-                    </h3>
-                    <span class="item-price text-primary">Rp{{ number_format($product->price, 0, ',', '.') }}</span>
-                  </div>
-                </div>
-              </div>
-              @endforeach
-            </div>
-          </div>
-          <div class="swiper-pagination swiper-pagination-graduation"></div>
-        </div>
-      </div>
-    </section>
-    <section id="wisuda-moment" class="product-store padding-large position-relative">
-      <div class="container">
-        <div class="row">
-          <div class="display-header d-flex justify-content-between pb-3">
-            <h2 class="display-7 text-dark text-uppercase">Special Weddings</h2>
-            <div class="btn-right">
-              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">See All My Product</a>
-            </div>
-          </div>
-          <div class="swiper weddings-swiper">
-            <div class="swiper-wrapper">
-              @foreach($specialWeddings as $product)
-              <div class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="https://wa.me/6289509808564?text={{ urlencode('Halo, saya ingin memesan produk: ' . $product->name . '. Apakah masih tersedia?') }}" class="btn btn-medium btn-success wa-order-btn" type="button" target="_blank">
-                        Order By WA
-                        <svg class="whatsapp-icon" width="20" height="20">
-                          <use xlink:href="#whatsapp"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a>
-                    </h3>
-                    <span class="item-price text-primary">Rp{{ number_format($product->price, 0, ',', '.') }}</span>
-                  </div>
-                </div>
-              </div>
-              @endforeach
-            </div>
-          </div>
-          <div class="swiper-pagination swiper-pagination-weddings"></div>
-        </div>
-      </div>
-    </section>
-    <section id="special-cake" class="product-store padding-large position-relative">
-      <div class="container">
-        <div class="row">
-          <div class="display-header d-flex justify-content-between pb-3">
-            <h2 class="display-7 text-dark text-uppercase">Special Cake</h2>
-            <div class="btn-right">
-              <a href="{{ url('/shop') }}" class="btn btn-medium btn-normal text-uppercase">See All My Product</a>
-            </div>
-          </div>
-          <div class="swiper cake-swiper">
-            <div class="swiper-wrapper">
-              @foreach($specialCake as $product)
-              <div class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="https://wa.me/6289509808564?text={{ urlencode('Halo, saya ingin memesan produk: ' . $product->name . '. Apakah masih tersedia?') }}" class="btn btn-medium btn-success wa-order-btn" type="button" target="_blank">
-                        Order By WA
-                        <svg class="whatsapp-icon" width="20" height="20">
-                          <use xlink:href="#whatsapp"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a>
-                    </h3>
-                    <span class="item-price text-primary">Rp{{ number_format($product->price, 0, ',', '.') }}</span>
-                  </div>
-                </div>
-              </div>
-              @endforeach
-            </div>
-          </div>
-          <div class="swiper-pagination swiper-pagination-cake"></div>
-        </div>
-      </div>
-    </section>
+    @endforeach
     <section id="latest-blog" class="padding-large">
       <div class="container">
         <div class="row">

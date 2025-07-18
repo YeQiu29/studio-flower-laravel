@@ -32,7 +32,6 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Image</th>
@@ -43,7 +42,6 @@
         <tbody>
             @forelse($products as $product)
             <tr>
-                <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
                 <td>Rp{{ number_format($product->price, 0, ',', '.') }}</td>
                 <td>
@@ -53,14 +51,14 @@
                         No Image
                     @endif
                 </td>
-                <td>{{ $product->category }}</td>
+                <td>{{ $product->category->name ?? 'N/A' }}</td>
                 <td>
                     <div class="d-flex gap-2">
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
+                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="delete-form">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                         </form>
                     </div>
                 </td>

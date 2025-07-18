@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - @yield('title')</title>
+    <title>Studio Flower Admin</title>
     <link rel="icon" href="{{ asset('images/main-logo.png') }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('style.css') }}">
@@ -89,6 +89,11 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.posts.index') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">
                                 <ion-icon name="document" class="me-2"></ion-icon> Manage Posts
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}">
+                                <ion-icon name="pricetags" class="me-2"></ion-icon> Manage Categories
                             </a>
                         </li>
                         <li class="nav-item">

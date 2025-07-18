@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,13 +17,18 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-        // Search functionality
         if ($request->has('search')) {
-            $query->where('name', 'like', '%' . $request->input('search') . '%');
+            $searchTerm = $request->input('search');
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%')
+                  ->orWhereHas('category', function ($q) use ($searchTerm) {
+                      $q->where('name', 'like', '%' . $searchTerm . '%');
+                  });
+            });
         }
 
         // Order by latest updated and paginate
-        $products = $query->orderBy('updated_at', 'desc')->paginate(8);
+        $products = $query->with('category')->orderBy('updated_at', 'desc')->paginate(8);
 
         return view('admin.index', compact('products'));
     }
@@ -32,7 +38,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        $categories = Category::all();
+        return view('admin.create', compact('categories'));
     }
 
     /**
@@ -45,7 +52,7 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'category' => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         try {
@@ -56,7 +63,7 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'price' => $request->price,
                 'image' => $imagePath,
-                'category' => $request->category,
+                'category_id' => $request->category_id,
             ]);
 
             return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
@@ -78,7 +85,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.edit', compact('product'));
+        $categories = Category::all();
+        return view('admin.edit', compact('product', 'categories'));
     }
 
     /**
@@ -91,14 +99,14 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'category' => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         try {
             $product->name = $request->name;
             $product->description = $request->description;
             $product->price = $request->price;
-            $product->category = $request->category;
+            $product->category_id = $request->category_id;
 
             if ($request->hasFile('image')) {
                 // Delete old image if exists

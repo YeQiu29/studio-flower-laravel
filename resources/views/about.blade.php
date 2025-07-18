@@ -24,12 +24,6 @@
     </div>
 </section>
 
-        <div class="text-center mt-5">
-            <p>For more information, feel free to <a href="{{ url('/contact') }}">contact us</a>.</p>
-        </div>
-    </div>
-</section>
-
 <section id="map-location" class="padding-large">
     <div class="container">
         <div class="row">

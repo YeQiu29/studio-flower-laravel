@@ -35,8 +35,15 @@
             <input type="file" class="form-control" id="image" name="image" required>
         </div>
         <div class="mb-3">
-            <label for="category" class="form-label">Category</label>
-            <input type="text" class="form-control" id="category" name="category" value="{{ old('category') }}">
+            <label for="category_id" class="form-label">Category</label>
+            <select class="form-control" id="category_id" name="category_id" required>
+                <option value="" disabled selected>Select a category</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Add Product</button>
     </form>

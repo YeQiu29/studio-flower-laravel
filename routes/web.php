@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
@@ -28,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminProductController::class, 'index'])->name('admin.index');
     Route::resource('/admin/products', AdminProductController::class)->names('admin.products');
     Route::resource('/admin/posts', AdminPostController::class)->names('admin.posts');
+    Route::resource('/admin/categories', AdminCategoryController::class)->names('admin.categories');
 
     Route::get('/dashboard', function () {
         return redirect('/');

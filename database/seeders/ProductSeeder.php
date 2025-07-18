@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
+use App\Models\Category; // Import Category model
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,6 +18,9 @@ class ProductSeeder extends Seeder
     {
         // Clear existing products to avoid duplication on re-seeding
         Product::truncate();
+
+        // Get category IDs
+        $categories = Category::all()->keyBy('name');
 
         $imageFiles = File::files(public_path('images'));
 
@@ -54,7 +58,7 @@ class ProductSeeder extends Seeder
                     'description' => $description,
                     'price' => $data['price'],
                     'image' => 'products/' . $fileName,
-                    'category' => $data['category'],
+                    'category_id' => $categories[$data['category']]->id, // Use category_id
                 ]);
             }
         }

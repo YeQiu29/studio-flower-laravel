@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Studio Flower - @yield('title', 'Home')</title>
+    <title>Studio Flower</title>
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="{{ asset('images/main-logo.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

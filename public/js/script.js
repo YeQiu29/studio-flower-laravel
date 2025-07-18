@@ -70,72 +70,24 @@
         },
       });         
 
-      // Special Product (kiri ke kanan)
-      var swiperProduct = new Swiper(".product-swiper", {
-        slidesPerView: 4,
-        spaceBetween: 10,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-          reverseDirection: false,
-          speed: 1000, // Added for slow scroll animation
-        },
-        pagination: {
-          el: "#mobile-products .swiper-pagination",
-          clickable: true,
-        },
-      });      
-
-      // Special Graduation (kanan ke kiri)
-      var swiperGraduation = new Swiper(".graduation-swiper", {
-        slidesPerView: 4,
-        spaceBetween: 10,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-          reverseDirection: true, // Kanan ke kiri
-          speed: 1000, // Added for slow scroll animation
-        },
-        pagination: {
-          el: "#smart-watches .swiper-pagination-graduation",
-          clickable: true,
-        },
-      }); 
-
-      // Special Weddings (kiri ke kanan)
-      var swiperWeddings = new Swiper(".weddings-swiper", {
-        slidesPerView: 4,
-        spaceBetween: 10,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-          reverseDirection: false, // Kiri ke kanan
-          speed: 1000, // Added for slow scroll animation
-        },
-        pagination: {
-          el: "#wisuda-moment .swiper-pagination-weddings",
-          clickable: true,
-        },
-      });
-
-      // Special Cake (kanan ke kiri)
-      var swiperCake = new Swiper(".cake-swiper", {
-        slidesPerView: 4,
-        spaceBetween: 10,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-          reverseDirection: true, // Kanan ke kiri
-          speed: 1000, // Added for slow scroll animation
-        },
-        pagination: {
-          el: "#special-cake .swiper-pagination-cake",
-          clickable: true,
-        },
+      // Initialize all product carousels
+      document.querySelectorAll('.product-store').forEach((section, index) => {
+        const direction = section.dataset.direction === 'rtl';
+        new Swiper(section.querySelector('.product-swiper'), {
+          slidesPerView: 4,
+          spaceBetween: 10,
+          loop: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            reverseDirection: direction,
+            speed: 1000,
+          },
+          pagination: {
+            el: section.querySelector('.swiper-pagination'),
+            clickable: true,
+          },
+        });
       });
 
       var swiperTestimonial = new Swiper(".testimonial-swiper", {
