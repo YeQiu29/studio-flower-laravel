@@ -97,6 +97,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.instagram-posts.index') ? 'active' : '' }}" href="{{ route('admin.instagram-posts.index') }}">
+                                <ion-icon name="logo-instagram" class="me-2"></ion-icon> Manage Instagram Posts
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}" target="_blank">
                                 <ion-icon name="globe" class="me-2"></ion-icon> View Website
                             </a>

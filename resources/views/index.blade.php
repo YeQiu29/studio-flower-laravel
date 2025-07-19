@@ -302,9 +302,10 @@
             <h2 class="display-7">Shop Our Instagram</h2>
           </div>
           <div class="d-flex flex-wrap">
+            @foreach ($instagramPosts as $post)
             <figure class="instagram-item pe-2">
-              <a href="https://www.instagram.com/p/C-9tKdYp7hF/?igsh=ZHA3ejJzcW9kOTZ1" class="image-link position-relative">
-                <img src="{{ asset('images/insta01.jpg') }}" alt="instagram" class="img-fluid">
+              <a href="{{ $post->link }}" class="image-link position-relative">
+                <img src="{{ asset('storage/' . $post->image_path) }}" alt="instagram" class="img-fluid" style="width: 250px; height: 250px; object-fit: cover;">
                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                   <svg class="instagram">
                     <use xlink:href="#instagram"></use>
@@ -312,52 +313,13 @@
                 </div>
               </a>
             </figure>
-            <figure class="instagram-item pe-2">
-              <a href="https://www.instagram.com/p/C8W8EyvJc4-/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="image-link position-relative">
-                <img src="{{ asset('images/insta02.webp') }}" alt="instagram" class="img-fluid">
-                <div class="icon-overlay position-absolute d-flex justify-content-center">
-                  <svg class="instagram">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </div>
-              </a>
-            </figure>
-            <figure class="instagram-item pe-2">
-              <a href="https://www.instagram.com/p/DE13oeGpUQ7/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="image-link position-relative">
-                <img src="{{ asset('images/flower-cake-box.jpg') }}" alt="instagram" class="img-fluid">
-                <div class="icon-overlay position-absolute d-flex justify-content-center">
-                  <svg class="instagram">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </div>
-              </a>
-            </figure>
-            <figure class="instagram-item pe-2">
-              <a href="https://www.instagram.com/p/C8n9-drp3wK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="image-link position-relative">
-                <img src="{{ asset('images/insta04.jpg') }}" alt="instagram" class="img-fluid">
-                <div class="icon-overlay position-absolute d-flex justify-content-center">
-                  <svg class="instagram">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </div>
-              </a>
-            </figure>
-            <figure class="instagram-item pe-2">
-              <a href="https://www.instagram.com/p/C9RVxgypQZN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="image-link position-relative">
-                <img src="{{ asset('images/insta05.jpg') }}" alt="instagram" class="img-fluid">
-                <div class="icon-overlay position-absolute d-flex justify-content-center">
-                  <svg class="instagram">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </div>
-              </a>
-            </figure>
+            @endforeach
           </div>
         </div>
       </div>
     </section>
 
-    <section id="map-location" class="padding-large">
+    <section id="map-location" class="padding-small">
         <div class="container">
             <div class="row">
                 <div class="col-12">
