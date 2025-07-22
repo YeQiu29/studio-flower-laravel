@@ -126,6 +126,11 @@
                     <h5 class="px-3 text-white">Admin Menu</h5>
                     <ul class="nav flex-column">
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                                <ion-icon name="home" class="me-2"></ion-icon> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.products.index') ? 'active' : '' }}" href="{{ route('admin.products.index') }}">
                                 <ion-icon name="cube" class="me-2"></ion-icon> Manage Products
                             </a>

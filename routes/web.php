@@ -27,7 +27,8 @@ Route::get('/contact', [App\Http\Controllers\ContactController::class, 'showCont
 Route::post('/contact', [App\Http\Controllers\ContactController::class, 'sendEmail'])->name('contact.send');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', [AdminProductController::class, 'index'])->name('admin.index');
+    Route::get('/admin', [\App\Http\Controllers\DashboardController::class, 'index'])->name('admin.index');
+    Route::get('/admin/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('/admin/products', AdminProductController::class)->names('admin.products');
     Route::resource('/admin/posts', AdminPostController::class)->names('admin.posts');
     Route::resource('/admin/categories', AdminCategoryController::class)->names('admin.categories');
