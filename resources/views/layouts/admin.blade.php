@@ -17,7 +17,7 @@
             bottom: 0;
             left: 0;
             z-index: 100;
-            padding: 48px 0 0;
+            padding-top: 5rem; /* Changed from 48px */
             box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
             width: 250px;
             transition: all 0.3s ease;
@@ -51,28 +51,72 @@
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
+        .navbar {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .profile-section {
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        .profile-section img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .profile-info {
+            line-height: 1.2;
+        }
+        .profile-info .name {
+            font-weight: bold;
+        }
+        .profile-info .role {
+            font-size: 0.8em;
+            color: #ccc;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ route('admin.products.index') }}">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap shadow px-3">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0" href="{{ route('admin.products.index') }}">
             <img src="{{ asset('images/main-logo.png') }}" alt="Studio Flower Logo">
             Studio Flower Admin
         </a>
         <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="{{ route('logout') }}"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Logout
+        <div class="d-flex align-items-center">
+            <div class="profile-section me-3">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#profilePictureModal">
+                    <img src="{{ Auth::user()->profile_photo_path ? asset('storage/' . Auth::user()->profile_photo_path) : asset('images/commentor-item1.jpg') }}" alt="Profile Picture">
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </li>
-        </ul>
+                <div class="profile-info">
+                    <div class="name">{{ Auth::user()->name }}</div>
+                    <div class="role">Administrator</div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Edit Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
     <div class="container-fluid">
@@ -122,6 +166,21 @@
                     </div>
                 </footer>
             </main>
+        </div>
+    </div>
+
+    <!-- Profile Picture Modal -->
+    <div class="modal fade" id="profilePictureModal" tabindex="-1" aria-labelledby="profilePictureModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profilePictureModalLabel">Profile Picture</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="{{ Auth::user()->profile_photo_path ? asset('storage/' . Auth::user()->profile_photo_path) : asset('images/commentor-item1.jpg') }}" class="img-fluid" alt="Profile Picture">
+                </div>
+            </div>
         </div>
     </div>
 

@@ -33,6 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('/admin/categories', AdminCategoryController::class)->names('admin.categories');
     Route::resource('/admin/instagram-posts', AdminInstagramPostController::class)->names('admin.instagram-posts');
 
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [\App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/dashboard', function () {
         return redirect('/');
     })->name('dashboard');
