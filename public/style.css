@@ -18,7 +18,6 @@ This is main CSS file that contains custom style rules used in this template
 /*------------------------------------------------
 
 CSS STRUCTURE:
-
     
 /*--------------------------------------------------------------
 /** 1. VARIABLES
@@ -423,7 +422,16 @@ h3.cart-title {
   z-index: 9999;
   -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
   -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
-  transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+.search-popup.is-visible {
+  opacity: 1;
+  visibility: visible;
+  cursor: -webkit-image-set(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23FFF' d='M20 1l-1-1-9 9-9-9-1 1 9 9-9 9 1 1 9-9 9 9 1-1-9-9'/%3E%3C/svg%3E") 1x, url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M20 1l-1-1-9 9-9-9-1 1 9 9-9 9 1 1 9-9 9 9 1-1-9-9'/%3E%3C/svg%3E") 2x), pointer;
+  cursor: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M20 1l-1-1-9 9-9-9-1 1 9 9-9 9 1 1 9-9 9 9 1-1-9-9'/%3E%3C/svg%3E"), pointer;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+  -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
+  transition: opacity 0.3s 0s, visibility 0s 0s;
 }
 .search-popup.is-visible {
   opacity: 1;
@@ -692,24 +700,34 @@ h3.cart-title {
 /* 4. Product
 /*----------------------------------------------*/
 .product-store .product-card .cart-concern {
-    bottom: 75px;
-    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto; /* Remove fixed width */
+    height: auto; /* Remove fixed height */
     display: flex;
     justify-content: center;
+    align-items: center; /* Center vertically */
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.3s ease-out;
     opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for better visibility */
+}
+.product-store .product-card .cart-concern .cart-button {
+    width: auto; /* Let the button size itself */
 }
 .product-store .product-card:hover .cart-concern {
-    bottom: 90px;
     opacity: 1;
 }
 .product-card .cart-concern svg {
     width: 16px;
     height: 16px;
     fill: var(--light-color);
-    margin-left: 9px;
+}
+.btn.btn-medium.btn-success.wa-order-btn {
+    /* Removed flex properties, relying on parent for centering */
 }
 .product-card .card-detail span {
     font-size: 1.5em;
@@ -719,6 +737,7 @@ h3.cart-title {
   width: 310px;
   height: 418px;
   overflow: hidden;
+  position: relative;
 }
 
 .product-card .image-holder img {
@@ -796,12 +815,37 @@ h3.cart-title {
 
 /* 7. Instagram
 /*----------------------------------------------*/
-#instagram figure.instagram-item {
-    width: 20%;
+#instagram .d-flex {
+    flex-wrap: wrap;
 }
-figure.instagram-item img.insta-image {
+
+#instagram figure.instagram-item {
     width: 100%;
-    height: 100%;
+    padding: 5px;
+}
+
+@media (min-width: 576px) {
+    #instagram figure.instagram-item {
+        width: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    #instagram figure.instagram-item {
+        width: 33.3333%;
+    }
+}
+
+@media (min-width: 992px) {
+    #instagram figure.instagram-item {
+        width: 20%;
+    }
+}
+
+figure.instagram-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
 }
 .instagram-item .icon-overlay {

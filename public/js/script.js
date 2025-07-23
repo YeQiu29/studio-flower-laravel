@@ -74,18 +74,33 @@
       document.querySelectorAll('.product-store').forEach((section, index) => {
         const direction = section.dataset.direction === 'rtl';
         new Swiper(section.querySelector('.product-swiper'), {
-          slidesPerView: 4,
-          spaceBetween: 10,
           loop: true,
           autoplay: {
             delay: 5000,
             disableOnInteraction: false,
             reverseDirection: direction,
-            speed: 1000,
           },
           pagination: {
             el: section.querySelector('.swiper-pagination'),
             clickable: true,
+          },
+          breakpoints: {
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
+            576: {
+              slidesPerView: 2,
+              spaceBetween: 0,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 0,
+            },
+            992: {
+              slidesPerView: 4,
+              spaceBetween: 0,
+            },
           },
         });
       });
