@@ -151,6 +151,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.settings.index') ? 'active' : '' }}" href="{{ route('admin.settings.index') }}">
+                                <ion-icon name="settings-outline" class="me-2"></ion-icon> Pengaturan Email
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}" target="_blank">
                                 <ion-icon name="globe" class="me-2"></ion-icon> View Website
                             </a>

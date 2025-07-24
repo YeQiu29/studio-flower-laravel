@@ -34,6 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('/admin/categories', AdminCategoryController::class)->names('admin.categories');
     Route::resource('/admin/instagram-posts', AdminInstagramPostController::class)->names('admin.instagram-posts');
 
+    // Email Settings
+    Route::get('/admin/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin.settings.index');
+    Route::post('/admin/settings', [\App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.settings.store');
+
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [\App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
