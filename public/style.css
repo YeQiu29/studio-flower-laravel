@@ -734,10 +734,10 @@ h3.cart-title {
 }
 
 .product-card .image-holder {
-  width: 310px;
-  height: 418px;
+  width: 100%;
   overflow: hidden;
   position: relative;
+  aspect-ratio: 310 / 418;
 }
 
 .product-card .image-holder img {

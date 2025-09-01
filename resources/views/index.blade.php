@@ -122,27 +122,29 @@
           <div class="swiper product-swiper">
             <div class="swiper-wrapper">
               @foreach($category->products as $product)
-              <div class="swiper-slide p-2">
-                <div class="product-card position-relative h-100">
-                  <div class="image-holder">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
-                    <div class="cart-concern position-absolute">
-                      <div class="cart-button">
-                        <a href="https://wa.me/6289509808564?text={{ urlencode('Halo, saya ingin memesan produk: ' . $product->name . '. Apakah masih tersedia?') }}" class="btn btn-medium btn-success wa-order-btn" type="button" target="_blank">
-                            Order By WA
-                            <svg class="whatsapp-icon" width="20" height="20">
-                              <use xlink:href="#whatsapp"></use>
-                            </svg>
-                          </a>
-                      </div>
+              <div class="swiper-slide">
+                <div class="p-2 h-100">
+                    <div class="product-card position-relative h-100">
+                        <div class="image-holder">
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
+                            <div class="cart-concern position-absolute">
+                                <div class="cart-button">
+                                    <a href="https://wa.me/6289509808564?text={{ urlencode('Halo, saya ingin memesan produk: ' . $product->name . '. Apakah masih tersedia?') }}" class="btn btn-medium btn-success wa-order-btn" type="button" target="_blank">
+                                        Order By WA
+                                        <svg class="whatsapp-icon" width="20" height="20">
+                                            <use xlink:href="#whatsapp"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                            <h3 class="card-title text-uppercase">
+                                <a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a>
+                            </h3>
+                            <span class="item-price text-primary">Rp{{ number_format($product->price, 0, ',', '.') }}</span>
+                        </div>
                     </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a>
-                    </h3>
-                    <span class="item-price text-primary">Rp{{ number_format($product->price, 0, ',', '.') }}</span>
-                  </div>
                 </div>
               </div>
               @endforeach
